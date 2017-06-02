@@ -1,0 +1,21 @@
+from microbit import *
+
+steps = 0
+actualsteps = steps//100
+calorie = steps * 0.04
+while True:
+    if accelerometer.is_gesture('shake') == True:
+        reading = accelerometer.get_z()
+        if reading > 0:
+            steps +=1
+            
+    elif button_a.is_pressed():
+        display.scroll(str(steps//100))
+
+    elif button_b.is_pressed() and actualsteps < 1000:
+        display.scroll("Walk more!")
+        
+    elif button_b.is_pressed() and actualsteps > 1000:
+        display.scroll(str(calorie))
+ 
+            
